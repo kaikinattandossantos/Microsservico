@@ -1,4 +1,4 @@
-package com.base.demo.core;
+package com.base.demo.core.cases;
 
 // abstração para apenas indicar método - arquitetura com boa prática
 //lógica da aplicação, agnóstico à aplicação

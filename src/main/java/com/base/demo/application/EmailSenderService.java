@@ -1,28 +1,24 @@
 package com.base.demo.application;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.base.demo.adapters.EmailSendGateway;
-import com.base.demo.core.EmailSender;
+import com.base.demo.adapters.EmailSenderGateway;
+import com.base.demo.core.cases.EmailSender;
 
-
-//camada que se conecta ao core para implementar uso de interface
+@Service
 public class EmailSenderService implements EmailSender {
 
-    private final EmailSendGateway emailsendgateway;
+    private final EmailSenderGateway emailSenderGateway;
 
-    //interface que se comunica com o AWS para esse arquivo não precisar se conectar diretamente
     @Autowired
-    public EmailSenderService(EmailSendGateway emailgateway) {
-        this.emailsendgateway = emailgateway;
+    public EmailSenderService(EmailSenderGateway emailSenderGateway) {
+        this.emailSenderGateway = emailSenderGateway;
     }
-
-
 
     @Override
-    public void SendEmail(String to, String subject, String body) {
-        this.emailsendgateway.SendEmail(to, subject, body);
-        throw new UnsupportedOperationException("Unimplemented method 'SendEmail'");
+    public void SendEmail(String toEmail, String subject, String body) {
+        emailSenderGateway.sendEmail(toEmail, subject, body);
     }
-    
 }
